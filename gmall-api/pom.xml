@@ -12,5 +12,28 @@
     <!--所有的公共api,bean,异常，模型等-->
     <artifactId>gmall-api</artifactId>
 
+    <!--导入公共使用的包-->
+    <dependencies>
+        <!--common-->
+        <dependency>
+            <groupId>com.mdh.gmall</groupId>
+            <artifactId>gmall-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--引入dubbo-->
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.1.0</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 </project>
