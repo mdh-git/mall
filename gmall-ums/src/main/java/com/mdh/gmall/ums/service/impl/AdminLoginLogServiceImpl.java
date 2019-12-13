@@ -1,6 +1,7 @@
 package com.mdh.gmall.ums.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mdh.gmall.ums.entity.Admin;
 import com.mdh.gmall.ums.entity.AdminLoginLog;
 import com.mdh.gmall.ums.mapper.AdminLoginLogMapper;
 import com.mdh.gmall.ums.service.AdminLoginLogService;
