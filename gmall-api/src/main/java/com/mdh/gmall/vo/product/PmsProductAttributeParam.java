@@ -6,12 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.io.Serializable;
+
 /**
  * 商品属性参数
  * Created by mdh 4/26.
  */
 @Data
-public class PmsProductAttributeParam {
+public class PmsProductAttributeParam implements Serializable {
     @ApiModelProperty("属性分类ID")
     @NotEmpty(message = "属性分类不能为空")
     private Long productAttributeCategoryId;
