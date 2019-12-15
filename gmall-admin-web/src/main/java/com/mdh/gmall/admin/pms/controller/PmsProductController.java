@@ -1,10 +1,10 @@
 package com.mdh.gmall.admin.pms.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.mdh.gmall.pms.vo.PmsProductParam;
-import com.mdh.gmall.pms.vo.PmsProductQueryParam;
 import com.mdh.gmall.pms.service.ProductService;
 import com.mdh.gmall.to.CommonResult;
+import com.mdh.gmall.vo.product.PmsProductParam;
+import com.mdh.gmall.vo.product.PmsProductQueryParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.BindingResult;

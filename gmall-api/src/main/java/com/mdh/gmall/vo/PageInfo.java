@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 封装分页信息
+ * 封装分页信息,列表查询使用
  *
  * @author madonghao
  * @create 2019-12-15 14:41
