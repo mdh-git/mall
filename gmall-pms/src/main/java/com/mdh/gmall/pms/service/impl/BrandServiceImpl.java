@@ -9,9 +9,9 @@ import com.mdh.gmall.pms.entity.Brand;
 import com.mdh.gmall.pms.mapper.BrandMapper;
 import com.mdh.gmall.pms.service.BrandService;
 import com.mdh.gmall.vo.PageInfoVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -31,8 +31,8 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
     @Override
     public PageInfoVo brandPageInfo(String keyword, Integer pageNum, Integer pageSize) {
         QueryWrapper<Brand> name = null;
-        if(!StringUtils.isEmpty(keyword)){
-            name = new QueryWrapper<Brand>().like("name", keyword);
+        if(StringUtils.isNotBlank(keyword)){
+            name = new QueryWrapper<Brand>().like("name", keyword.trim());
         }
         IPage<Brand> brandIPage = brandMapper.selectPage(new Page<Brand>(pageNum, pageSize), name);
         PageInfoVo page = new PageInfoVo();

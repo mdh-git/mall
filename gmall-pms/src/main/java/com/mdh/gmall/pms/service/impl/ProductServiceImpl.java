@@ -10,9 +10,9 @@ import com.mdh.gmall.pms.mapper.ProductMapper;
 import com.mdh.gmall.pms.service.ProductService;
 import com.mdh.gmall.vo.PageInfoVo;
 import com.mdh.gmall.vo.product.PmsProductQueryParam;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -38,8 +38,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             productQueryWrapper.eq("brand_id", param.getBrandId());
         }
         // 关键字
-        if(!StringUtils.isEmpty(param.getKeyword())){
-            productQueryWrapper.like("name", param.getKeyword());
+        if(StringUtils.isNotBlank(param.getKeyword())){
+            productQueryWrapper.like("name", param.getKeyword().trim());
         }
         // 分类id
         if(param.getProductCategoryId() != null){
