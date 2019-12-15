@@ -1,7 +1,7 @@
 package com.mdh.gmall.admin.pms.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.mdh.gmall.admin.pms.vo.PmsProductCategoryParam;
+import com.mdh.gmall.pms.vo.PmsProductCategoryParam;
 import com.mdh.gmall.pms.service.ProductCategoryService;
 
 import com.mdh.gmall.to.CommonResult;

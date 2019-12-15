@@ -1,6 +1,6 @@
-package com.mdh.gmall.admin.pms.vo;
+package com.mdh.gmall.vo.product;
 
-import com.mdh.gmall.admin.validator.FlagValidator;
+import com.mdh.gmall.validator.FlagValidator;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;

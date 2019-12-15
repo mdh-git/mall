@@ -1,6 +1,7 @@
 package com.mdh.gmall.admin.ums.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mdh.gmall.admin.ums.vo.UmsAdminLoginParam;
 import com.mdh.gmall.admin.ums.vo.UmsAdminParam;
 import com.mdh.gmall.admin.utils.JwtTokenUtil;
@@ -21,7 +22,9 @@ import java.util.Map;
 
 /**
  * 后台用户管理
+ * 解决跨域的问题
  */
+@CrossOrigin
 @RestController
 @Api(tags = "AdminController", description = "后台用户管理")
 @RequestMapping("/admin")
@@ -45,12 +48,20 @@ public class UmsAdminController {
         return new CommonResult().success(admin);
     }
 
+    /**
+     * 登录成功之后用户的信息已jwt令牌的方式返回给前端
+     * @param umsAdminLoginParam
+     * @param result
+     * @return
+     *
+     * 不加@RequestBody 接受的是 k-v&k-v
+     * 加上@RequestBody 接受的是 json字符串
+     */
     @ApiOperation(value = "登录以后返回token")
     @PostMapping(value = "/login")
     public Object login(@RequestBody UmsAdminLoginParam umsAdminLoginParam, BindingResult result) {
         //去数据库登陆
-        //Admin admin = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
-        Admin admin = null;
+        Admin admin = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         //登陆成功生成token，此token携带基本用户信息，以后就不用去数据库了
         String token = jwtTokenUtil.generateToken(admin);
         if (token == null) {
@@ -91,10 +102,12 @@ public class UmsAdminController {
     @ResponseBody
     public Object getAdminInfo(HttpServletRequest request) {
         String oldToken = request.getHeader(tokenHeader);
-        String userName = jwtTokenUtil.getUserNameFromToken(oldToken);
-
-        //Admin umsAdmin = adminService.getOne(new QueryWrapper<Admin>().eq("username",userName));
-        Admin umsAdmin = null;
+        String userName = jwtTokenUtil.getUserNameFromToken(oldToken.substring(tokenHead.length()));
+        // 1、getOne()是mybatis-plus生成的，而且带了泛型
+        // 2、dubbo没办法直接调用mybatis-plus中带泛型的service
+        // 自动生成的肯能有兼容问题，最好不要远程调用
+        // Admin umsAdmin = adminService.getOne(new QueryWrapper<Admin>().eq("username",userName));
+        Admin umsAdmin = adminService.getUserInfo(userName);
         Map<String, Object> data = new HashMap<>();
         data.put("username", umsAdmin.getUsername());
         data.put("roles", new String[]{"TEST"});

@@ -1,7 +1,7 @@
 package com.mdh.gmall.admin.pms.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.mdh.gmall.admin.pms.vo.PmsProductAttributeParam;
+import com.mdh.gmall.pms.vo.PmsProductAttributeParam;
 import com.mdh.gmall.pms.service.ProductAttributeService;
 import com.mdh.gmall.to.CommonResult;
 import io.swagger.annotations.Api;

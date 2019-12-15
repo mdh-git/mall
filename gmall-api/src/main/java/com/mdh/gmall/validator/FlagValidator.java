@@ -1,4 +1,4 @@
-package com.mdh.gmall.admin.validator;
+package com.mdh.gmall.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

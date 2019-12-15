@@ -1,4 +1,4 @@
-package com.mdh.gmall.admin.pms.vo;
+package com.mdh.gmall.vo.product;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
