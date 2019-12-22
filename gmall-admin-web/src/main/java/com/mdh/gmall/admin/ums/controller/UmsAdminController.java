@@ -13,9 +13,12 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +44,22 @@ public class UmsAdminController {
 
     @ApiOperation(value = "用户注册")
     @PostMapping(value = "/register")
-    public Object register(@RequestBody UmsAdminParam umsAdminParam, BindingResult result) {
+    public Object register(@Valid @RequestBody UmsAdminParam umsAdminParam, BindingResult result) {
         Admin admin = null;
-        //TODO 完成注册功能
+
+        int errorCount = result.getErrorCount();
+        if(errorCount > 0){
+            List<FieldError> fieldErrors = result.getFieldErrors();
+            fieldErrors.forEach((fieldError -> {
+                String field = fieldError.getField();
+                System.out.println("field : " + field);
+                System.out.println(fieldError.getRejectedValue());
+                System.out.println(fieldError.getDefaultMessage());
+            }));
+            return new CommonResult().validateFailed(result);
+        } else {
+            //TODO 完成注册功能
+        }
 
         return new CommonResult().success(admin);
     }
