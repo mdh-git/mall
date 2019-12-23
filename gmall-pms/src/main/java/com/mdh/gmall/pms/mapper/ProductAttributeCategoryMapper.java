@@ -1,5 +1,6 @@
 package com.mdh.gmall.pms.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mdh.gmall.pms.entity.ProductAttributeCategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -12,5 +13,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2019-12-11
  */
 public interface ProductAttributeCategoryMapper extends BaseMapper<ProductAttributeCategory> {
-
 }

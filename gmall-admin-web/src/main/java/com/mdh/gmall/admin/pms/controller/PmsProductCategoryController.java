@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.mdh.gmall.pms.service.ProductCategoryService;
 
 import com.mdh.gmall.to.CommonResult;
+import com.mdh.gmall.vo.PageInfoVo;
 import com.mdh.gmall.vo.product.PmsProductCategoryParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,6 +20,7 @@ import java.util.List;
 @RestController
 @Api(tags = "PmsProductCategoryController", description = "商品分类管理")
 @RequestMapping("/productCategory")
+@CrossOrigin
 public class PmsProductCategoryController {
     @Reference
     private ProductCategoryService productCategoryService;
@@ -47,7 +49,8 @@ public class PmsProductCategoryController {
                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                           @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         //TODO 分页查询商品分类
-        return new CommonResult().success(null);
+        PageInfoVo pageInfoVo = productCategoryService.productCategoryPageInfo(pageSize, pageNum, parentId);
+        return new CommonResult().success(pageInfoVo);
     }
 
     @ApiOperation("根据id获取商品分类")
