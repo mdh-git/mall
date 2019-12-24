@@ -3,6 +3,9 @@ package com.mdh.gmall.pms.service;
 import com.mdh.gmall.pms.entity.ProductCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mdh.gmall.vo.PageInfoVo;
+import com.mdh.gmall.vo.product.PmsProductCategoryWithChildrenItem;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,6 @@ import com.mdh.gmall.vo.PageInfoVo;
 public interface ProductCategoryService extends IService<ProductCategory> {
 
     PageInfoVo productCategoryPageInfo(Integer pageSize, Integer pageNum, Long parentId);
+
+    List<PmsProductCategoryWithChildrenItem> listCatelogWithChilder(int i);
 }

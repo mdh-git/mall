@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author mdh
- * @since 2019-12-11
+ * @since 2019-12-24
  */
 public interface SkuStockMapper extends BaseMapper<SkuStock> {
 

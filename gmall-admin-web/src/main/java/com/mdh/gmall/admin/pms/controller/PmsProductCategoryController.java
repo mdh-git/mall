@@ -6,6 +6,7 @@ import com.mdh.gmall.pms.service.ProductCategoryService;
 import com.mdh.gmall.to.CommonResult;
 import com.mdh.gmall.vo.PageInfoVo;
 import com.mdh.gmall.vo.product.PmsProductCategoryParam;
+import com.mdh.gmall.vo.product.PmsProductCategoryWithChildrenItem;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.BindingResult;
@@ -84,7 +85,9 @@ public class PmsProductCategoryController {
     @ApiOperation("查询所有一级分类及子分类[有难度]")
     @GetMapping(value = "/list/withChildren")
     public Object listWithChildren() {
-        //TODO 查询所有一级分类及子分类
-        return new CommonResult().success(null);
+
+        //TODO 查询所有一级分类及子分类,查询任意菜单以及他下面的所有子菜单
+        List<PmsProductCategoryWithChildrenItem> items = productCategoryService.listCatelogWithChilder(0);
+        return new CommonResult().success(items);
     }
 }

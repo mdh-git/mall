@@ -9,8 +9,11 @@ import com.mdh.gmall.pms.entity.ProductCategory;
 import com.mdh.gmall.pms.mapper.ProductCategoryMapper;
 import com.mdh.gmall.pms.service.ProductCategoryService;
 import com.mdh.gmall.vo.PageInfoVo;
+import com.mdh.gmall.vo.product.PmsProductCategoryWithChildrenItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * <p>
@@ -34,4 +37,12 @@ public class ProductCategoryServiceImpl extends ServiceImpl<ProductCategoryMappe
         IPage<ProductCategory> page = productCategoryMapper.selectPage(new Page<ProductCategory>(pageNum, pageSize), queryWrapper);
         return PageInfoVo.getVo(page, pageSize.longValue());
     }
+
+    @Override
+    public List<PmsProductCategoryWithChildrenItem> listCatelogWithChilder(int i) {
+        List<PmsProductCategoryWithChildrenItem> items = productCategoryMapper.listCatelogWithChilder(i);
+        return items;
+    }
+
+
 }
