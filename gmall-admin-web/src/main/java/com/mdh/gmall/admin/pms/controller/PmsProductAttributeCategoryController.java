@@ -33,7 +33,8 @@ public class PmsProductAttributeCategoryController {
     @ApiOperation("修改商品属性分类")
     @PostMapping(value = "/update/{id}")
     public Object update(@PathVariable Long id, @RequestParam String name) {
-        //TODO 修改商品属性分类
+        //修改商品属性类型的名称
+        productAttributeCategoryService.updateNameById(id, name);
         return new CommonResult().success(null);
     }
 

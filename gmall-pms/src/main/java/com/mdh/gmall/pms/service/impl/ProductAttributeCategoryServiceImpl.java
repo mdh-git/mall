@@ -33,4 +33,12 @@ public class ProductAttributeCategoryServiceImpl extends ServiceImpl<ProductAttr
         IPage<ProductAttributeCategory> page = productAttributeCategoryMapper.selectPage(new Page<ProductAttributeCategory>(pageNum, pageSize), null);
         return PageInfoVo.getVo(page, pageSize.longValue());
     }
+
+    @Override
+    public void updateNameById(Long id, String name) {
+        ProductAttributeCategory productAttributeCategory = new ProductAttributeCategory();
+        productAttributeCategory.setId(id);
+        productAttributeCategory.setName(name);
+        productAttributeCategoryMapper.updateById(productAttributeCategory);
+    }
 }

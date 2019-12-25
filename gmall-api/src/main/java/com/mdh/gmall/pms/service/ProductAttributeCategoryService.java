@@ -21,4 +21,6 @@ public interface ProductAttributeCategoryService extends IService<ProductAttribu
      * @return
      */
     PageInfoVo productAttributeCategoryPageInfo(Integer pageSize, Integer pageNum);
+
+    void updateNameById(Long id, String name);
 }
