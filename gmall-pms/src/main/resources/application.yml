@@ -55,6 +55,12 @@ spring:
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
 
 
+
+  redis:
+    database: 0
+    port: 6379
+    host: 127.0.0.1
+
 # 配置slq打印日志
 mybatis-plus:
   configuration:
@@ -72,3 +78,5 @@ dubbo:
   # scan: com.mdh.gmall.pms.service.impl  #服务暴露与发现消费所在的package
   consumer:
     check: false #关闭启动检查
+
+
