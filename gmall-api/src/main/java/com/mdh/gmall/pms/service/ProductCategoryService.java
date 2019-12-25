@@ -19,5 +19,5 @@ public interface ProductCategoryService extends IService<ProductCategory> {
 
     PageInfoVo productCategoryPageInfo(Integer pageSize, Integer pageNum, Long parentId);
 
-    List<PmsProductCategoryWithChildrenItem> listCatelogWithChilder(int i);
+    List<PmsProductCategoryWithChildrenItem> listCatelogWithChilder(Integer i);
 }
