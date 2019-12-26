@@ -26,7 +26,8 @@ public class PmsProductAttributeCategoryController {
     @PostMapping(value = "/create")
     public Object create(@RequestParam String name) {
 
-        //TODO 添加商品属性分类
+        // 添加商品属性分类
+        productAttributeCategoryService.createProductAttributeCategory(name);
         return new CommonResult().success(null);
     }
 

@@ -41,8 +41,9 @@ public class PmsProductAttributeController {
     @ApiOperation("添加商品属性信息")
     @PostMapping(value = "/create")
     public Object create(@RequestBody PmsProductAttributeParam productAttributeParam, BindingResult bindingResult) {
-        //TODO 添加商品属性信息
-        return new CommonResult().success(null);
+        // 添加商品属性信息
+        int i = productAttributeService.create(productAttributeParam);
+        return new CommonResult().success(i);
     }
 
     @ApiOperation("修改商品属性信息")

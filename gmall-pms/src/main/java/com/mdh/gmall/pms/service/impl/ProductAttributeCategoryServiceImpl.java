@@ -41,4 +41,11 @@ public class ProductAttributeCategoryServiceImpl extends ServiceImpl<ProductAttr
         productAttributeCategory.setName(name);
         productAttributeCategoryMapper.updateById(productAttributeCategory);
     }
+
+    @Override
+    public void createProductAttributeCategory(String name) {
+        ProductAttributeCategory productAttributeCategory = new ProductAttributeCategory();
+        productAttributeCategory.setName(name);
+        productAttributeCategoryMapper.insert(productAttributeCategory);
+    }
 }
