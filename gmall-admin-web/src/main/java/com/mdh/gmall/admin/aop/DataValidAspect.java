@@ -1,6 +1,7 @@
 package com.mdh.gmall.admin.aop;
 
 import com.mdh.gmall.to.CommonResult;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -31,6 +32,7 @@ import org.springframework.validation.BindingResult;
  **/
 @Aspect
 @Component
+@Slf4j
 public class DataValidAspect {
 
     @Around("execution( * com.mdh.gmall.admin..*Controller.*(..))")
@@ -49,15 +51,15 @@ public class DataValidAspect {
                 }
             }
 
-            System.out.println("前置通知：");
+            log.info("前置通知：");
             proceed = point.proceed(point.getArgs());
-            System.out.println("返回通知：");
+            log.info("返回通知：");
         } catch (Throwable throwable) {
             throwable.printStackTrace();
-            System.out.println("异常通知：");
+            log.info("异常通知：");
             throw new RuntimeException(throwable);
         } finally {
-            System.out.println("后置通知：");
+            log.info("后置通知：");
         }
         return proceed;
     }
