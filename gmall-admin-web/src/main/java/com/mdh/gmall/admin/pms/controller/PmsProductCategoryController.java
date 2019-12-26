@@ -86,7 +86,7 @@ public class PmsProductCategoryController {
     @GetMapping(value = "/list/withChildren")
     public Object listWithChildren() {
 
-        //TODO 查询所有一级分类及子分类,查询任意菜单以及他下面的所有子菜单
+        //查询所有一级分类及子分类,查询任意菜单以及他下面的所有子菜单
         List<PmsProductCategoryWithChildrenItem> items = productCategoryService.listCatelogWithChilder(0);
         return new CommonResult().success(items);
     }

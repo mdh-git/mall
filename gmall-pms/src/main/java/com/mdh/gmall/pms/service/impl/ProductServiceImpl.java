@@ -1,18 +1,24 @@
 package com.mdh.gmall.pms.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.mdh.gmall.pms.entity.Product;
-import com.mdh.gmall.pms.mapper.ProductMapper;
+import com.mdh.gmall.pms.entity.*;
+import com.mdh.gmall.pms.mapper.*;
 import com.mdh.gmall.pms.service.ProductService;
 import com.mdh.gmall.vo.PageInfoVo;
+import com.mdh.gmall.vo.product.PmsProductParam;
 import com.mdh.gmall.vo.product.PmsProductQueryParam;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,10 +30,23 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Service
+@Slf4j
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
 
     @Autowired
     ProductMapper productMapper;
+
+    @Autowired
+    ProductAttributeValueMapper productAttributeValueMapper;
+
+    @Autowired
+    ProductFullReductionMapper productFullReductionMapper;
+
+    @Autowired
+    ProductLadderMapper productLadderMapper;
+
+    @Autowired
+    SkuStockMapper skuStockMapper;
 
     @Override
     public PageInfoVo productPageInfo(PmsProductQueryParam param) {
@@ -63,5 +82,45 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         IPage<Product> page = productMapper.selectPage(new Page<Product>(param.getPageNum(), param.getPageSize()), productQueryWrapper);
         PageInfoVo pageInfoVo = new PageInfoVo(page.getTotal(), page.getPages(), param.getPageSize(), page.getRecords(), page.getCurrent());
         return pageInfoVo;
+    }
+
+    @Override
+    public void saveProduct(PmsProductParam productParam) {
+
+        // 1.pms_product:保存商品的基本信息
+        Product product = new Product();
+        BeanUtils.copyProperties(productParam, product);
+        productMapper.insert(product);
+        log.info("product :{}", JSON.toJSONString(product));
+        // 2.pms_product_attribute_value:保存商品对应的所有属性值
+        List<ProductAttributeValue> productAttributeValueList = productParam.getProductAttributeValueList();
+        productAttributeValueList.forEach((item) ->{
+            item.setProductId(product.getId());
+            productAttributeValueMapper.insert(item);
+        });
+        // 3.pms_product_full_reduction:保存商品的满减信息
+        List<ProductFullReduction> productFullReductionList = productParam.getProductFullReductionList();
+        productFullReductionList.forEach((item) -> {
+            item.setProductId(product.getId());
+            productFullReductionMapper.insert(item);
+        });
+        // 4.pms_product_ladder:阶梯价格表
+        List<ProductLadder> productLadderList = productParam.getProductLadderList();
+        productLadderList.forEach( (item) -> {
+            item.setProductId(product.getId());
+            productLadderMapper.insert(item);
+        });
+        // 5.pms_sku_stock:库存表
+        List<SkuStock> skuStockList = productParam.getSkuStockList();
+        for (int i = 0; i < skuStockList.size(); i++) {
+            SkuStock skuStock = skuStockList.get(i);
+            if(StringUtils.isBlank(skuStock.getSkuCode())){
+                // skuCode必须有
+                // 生成规则 商品id _ sku自增id
+                skuStock.setSkuCode("");
+            }
+            skuStockMapper.insert(skuStock);
+        }
+
     }
 }

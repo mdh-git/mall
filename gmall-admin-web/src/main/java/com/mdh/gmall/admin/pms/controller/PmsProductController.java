@@ -1,6 +1,7 @@
 package com.mdh.gmall.admin.pms.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
 import com.mdh.gmall.pms.service.ProductService;
 import com.mdh.gmall.to.CommonResult;
 import com.mdh.gmall.vo.PageInfoVo;
@@ -8,6 +9,7 @@ import com.mdh.gmall.vo.product.PmsProductParam;
 import com.mdh.gmall.vo.product.PmsProductQueryParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +22,17 @@ import java.util.List;
 @RestController
 @Api(tags = "PmsProductController", description = "商品管理")
 @RequestMapping("/product")
+@Slf4j
 public class PmsProductController {
     @Reference
     private ProductService productService;
 
     @ApiOperation("创建商品")
     @PostMapping(value = "/create")
-    public Object create(@RequestBody PmsProductParam productParam,
-                         BindingResult bindingResult) {
+    public Object create(@RequestBody PmsProductParam productParam) {
         //TODO 查询所有一级分类及子分类
+        log.info("保存的数据：{}", JSON.toJSONString(productParam));
+        productService.saveProduct(productParam);
         return new CommonResult().success(null);
     }
 

@@ -31,3 +31,15 @@ spring:
     password: 123456
     url: jdbc:mysql://127.0.0.1:3306/gmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
+
+aliyun:
+  oss:
+    endpoint: oss-cn-shanghai.aliyuncs.com
+    accessKeyId: LTAI4FrMPfyRXQfSjnDGfmgZ
+    accessKeySecret: Z7NA1dHZTefDCvuTyBGN3IVHYsPByF
+    bucketName: mdh-oss
+    policy:
+      expire: 300
+    maxSize: 10
+    dir:
+      prefix: gmall/images/

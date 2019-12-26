@@ -52,7 +52,7 @@ public class ProductCategoryServiceImpl extends ServiceImpl<ProductCategoryMappe
         if(cacheMenu != null){
             //缓存中有
             log.info("菜单数据命中缓存......");
-            items = (List<PmsProductCategoryWithChildrenItem>) redisTemplate.opsForValue().get("");
+            items = (List<PmsProductCategoryWithChildrenItem>) redisTemplate.opsForValue().get(SysCacheConstant.CATEGORY_MENU_CACHE_KEY);
         } else {
             items = productCategoryMapper.listCatelogWithChilder(i);
             redisTemplate.opsForValue().set(SysCacheConstant.CATEGORY_MENU_CACHE_KEY,items);
