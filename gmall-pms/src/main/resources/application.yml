@@ -61,6 +61,13 @@ spring:
     port: 6379
     host: 127.0.0.1
 
+
+
+  elasticsearch:
+    jest:
+      uris: http://47.100.77.124:9200
+
+
 # 配置slq打印日志
 mybatis-plus:
   configuration:

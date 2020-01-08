@@ -7,6 +7,7 @@ dubbo:
   # scan: com.mdh.gmall.pms.service.impl  #服务暴露与发现消费所在的package
   consumer:
     check: false #关闭启动检查
+    timeout: 3000
 
 server:
   port: 8081
