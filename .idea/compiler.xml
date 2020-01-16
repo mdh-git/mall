@@ -10,13 +10,20 @@
         <module name="gmall-sms" />
         <module name="gmall-oms" />
         <module name="gmall-common" />
+        <module name="gmall-shop-portal" />
+        <module name="gmall-ums" />
         <module name="gmall-admin-web" />
+        <module name="search" />
         <module name="es-demo" />
+        <module name="gmall-search" />
         <module name="gmall-api" />
         <module name="gmall-pms" />
-        <module name="gmall-ums" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="portal" target="1.8" />
+      <module name="search" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -24,8 +31,12 @@
       <module name="gmall-admin-web" options="-parameters" />
       <module name="gmall-oms" options="-parameters" />
       <module name="gmall-pms" options="-parameters" />
+      <module name="gmall-search" options="-parameters" />
+      <module name="gmall-shop-portal" options="-parameters" />
       <module name="gmall-sms" options="-parameters" />
       <module name="gmall-ums" options="-parameters" />
+      <module name="portal" options="-parameters" />
+      <module name="search" options="-parameters" />
     </option>
   </component>
 </project>

@@ -1,0 +1,20 @@
+
+#dubbo相关的配置
+dubbo:
+  application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+    name: gmall-shop-portal
+  registry:                 #注册中心配置，用于配置连接注册中心相关信息。
+    address: zookeeper://127.0.0.1:2181
+  consumer:
+    check: false #关闭启动检查
+    timeout: 3000
+
+
+server:
+  port: 8888
+
+spring:
+  redis:
+    database: 0
+    port: 6379
+    host: 127.0.0.1

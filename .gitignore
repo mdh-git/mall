@@ -63,3 +63,8 @@
 /gmall-admin-web/mvnw.cmd
 /gmall-oms/mvnw.cmd
 /gmall-mbg/target/
+/gmall-search/.gitignore
+/gmall-shop-portal/.gitignore
+/gmall-shop-portal/gmall-shop-portal.iml
+/gmall-shop-portal/mvnw
+/gmall-shop-portal/mvnw.cmd

@@ -1,0 +1,23 @@
+#dubbo相关的配置
+dubbo:
+  application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+    name: gmall-search
+  registry:                 #注册中心配置，用于配置连接注册中心相关信息。
+    address: zookeeper://127.0.0.1:2181
+  protocol:     #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
+    name: dubbo
+    port: 32880
+  # scan: com.mdh.gmall.pms.service.impl  #服务暴露与发现消费所在的package
+  consumer:
+    check: false #关闭启动检查
+
+spring:
+  elasticsearch:
+    jest:
+      uris: http://47.100.77.124:9200
+
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/gmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
