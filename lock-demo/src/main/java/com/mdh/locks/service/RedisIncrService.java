@@ -39,7 +39,7 @@ public class RedisIncrService {
     private Object obj = new Object();
 
     /**
-     * 进程内肯定好使，单机跑。分布式肯定 不好使
+     * 进程内肯定好使，单机跑。肯定 不好使
      */
     public void incr() {
 
